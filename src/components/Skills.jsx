@@ -13,7 +13,7 @@ export default function Skills() {
     "bg-[var(--color-magenta)] text-white",
     "bg-[var(--color-cyan)] text-[#2b2d42]",
     "bg-[var(--color-yellow)] text-[#2b2d42]",
-    "bg-[var(--color-purple)] text-white",
+    "bg-[var(--color-purple)] text-white dark:text-[#2b2d42]",
     "bg-[var(--color-green)] text-white"
   ];
 

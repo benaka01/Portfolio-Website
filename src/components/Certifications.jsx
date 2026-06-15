@@ -12,7 +12,7 @@ export default function Certifications() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
         {portfolioData.certifications.map((cert, idx) => (
-          <div key={idx} className="playful-card p-5 bg-[var(--color-purple)] text-white dark:text-[#2b2d42] text-center flex flex-col items-center justify-center transform hover:-translate-y-2 hover:rotate-2">
+          <div key={idx} className="playful-card p-5 bg-[var(--bg-secondary)] text-[var(--text-main)] text-center flex flex-col items-center justify-center transform hover:-translate-y-2 hover:rotate-2">
             <div className="w-12 h-12 mb-4 bg-white border-3 border-[var(--border-color)] rounded-full shadow-[4px_4px_0px_var(--shadow-color)] flex items-center justify-center text-xl">
               ⭐
             </div>

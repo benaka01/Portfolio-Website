@@ -13,9 +13,9 @@ export default function Education() {
 
       <div className="space-y-6">
         {portfolioData.education.map((edu, idx) => (
-          <div key={idx} className="playful-card p-6 bg-[var(--color-yellow)] text-[#2b2d42] flex flex-col md:flex-row items-center gap-6 group hover:rotate-1">
+          <div key={idx} className="playful-card p-6 bg-[var(--bg-secondary)] text-[var(--text-main)] flex flex-col md:flex-row items-center gap-6 group hover:rotate-1">
             <div className="w-16 h-16 shrink-0 bg-white border-3 border-[var(--border-color)] rounded-full shadow-[4px_4px_0px_var(--shadow-color)] flex items-center justify-center group-hover:scale-110 transition-transform">
-              <GraduationCap size={32} />
+              <GraduationCap size={32} className="text-[var(--border-color)]" />
             </div>
             
             <div className="flex-1 text-center md:text-left">

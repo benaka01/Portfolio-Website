@@ -25,7 +25,12 @@ export default function Projects() {
         {portfolioData.projects.map((project, idx) => {
           const accentColorClass = bgColors[idx % bgColors.length];
           const isYellow = accentColorClass.includes("yellow") || accentColorClass.includes("cyan");
-          const textColorClass = isYellow ? "text-[#2b2d42]" : "text-white";
+          const isPurple = accentColorClass.includes("purple");
+          const textColorClass = isYellow 
+            ? "text-[#2b2d42]" 
+            : isPurple 
+              ? "text-white dark:text-[#2b2d42]" 
+              : "text-white";
 
           return (
             <div key={project.id} className="playful-card flex flex-col overflow-hidden group">
@@ -59,7 +64,7 @@ export default function Projects() {
 
                 {/* Actions */}
                 <div className="flex items-center gap-4">
-                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="playful-btn bg-[var(--bg-primary)] !py-2 !px-4 text-sm flex-1">
+                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="playful-btn bg-[var(--bg-primary)] !text-[var(--text-main)] !py-2 !px-4 text-sm flex-1">
                     GitHub Repo
                   </a>
                   {project.liveDemo !== "#" && (

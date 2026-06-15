@@ -26,8 +26,8 @@ export default function Experience() {
               </div>
 
               {/* Card */}
-              <div className={`w-full md:w-[45%] playful-card p-6 bg-[var(--color-cyan)] text-[#2b2d42] ${isEven ? "md:text-left" : "md:text-right"}`}>
-                <span className="inline-block px-3 py-1 bg-white border-2 border-[var(--border-color)] rounded-full text-xs font-bold shadow-[2px_2px_0px_var(--shadow-color)] mb-3">
+              <div className={`w-full md:w-[45%] playful-card p-6 bg-[var(--bg-secondary)] text-[var(--text-main)] ${isEven ? "md:text-left" : "md:text-right"}`}>
+                <span className="inline-block px-3 py-1 bg-white border-2 border-[var(--border-color)] rounded-full text-xs font-bold shadow-[2px_2px_0px_var(--shadow-color)] mb-3 text-[#2b2d42]">
                   {intern.period}
                 </span>
                 <h3 className="text-2xl font-[var(--font-heading)] font-bold mb-1">

@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowDown, Mail } from "lucide-react";
+import { Download, Mail } from "lucide-react";
 import profilePhoto from "../assets/Photo.jpeg";
 import { portfolioData } from "../data/portfolioData";
 
@@ -30,8 +30,12 @@ export default function Hero({ openContactModal }) {
               <Mail size={20} />
               Let's Chat!
             </button>
-            <a href="#projects" className="playful-btn bg-[var(--bg-secondary)] !text-[var(--text-main)]">
-              See my work <ArrowDown size={20} />
+            <a
+              href="/Benaka_Final_JFSD.pdf"
+              download="Benaka_B_Resume.pdf"
+              className="playful-btn bg-[var(--bg-secondary)] !text-[var(--text-main)]"
+            >
+              Resume <Download size={20} />
             </a>
           </div>
         </div>
@@ -51,7 +55,7 @@ export default function Hero({ openContactModal }) {
           </div>
           
           {/* Floating badge */}
-          <div className="absolute -bottom-4 -right-4 bg-[var(--color-purple)] text-white font-[var(--font-heading)] font-bold px-4 py-2 rounded-2xl border-2 border-[var(--border-color)] shadow-[4px_4px_0px_var(--shadow-color)] animate-bounce" style={{ animationDuration: '2s' }}>
+          <div className="absolute -bottom-4 -right-4 bg-[var(--color-purple)] text-white dark:text-[#2b2d42] font-[var(--font-heading)] font-bold px-4 py-2 rounded-2xl border-2 border-[var(--border-color)] shadow-[4px_4px_0px_var(--shadow-color)] animate-bounce" style={{ animationDuration: '2s' }}>
             Available for work!
           </div>
         </div>
