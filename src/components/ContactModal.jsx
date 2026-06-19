@@ -21,16 +21,16 @@ export default function ContactModal({ isOpen, onClose }) {
     const { name, email, message } = formData;
 
     if (!name.trim() || name.trim().length < 2) {
-      setErrorMessage("Whoops! We need a valid name.");
+      setErrorMessage("Please enter a valid name.");
       setStatus("error"); return;
     }
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email.trim())) {
-      setErrorMessage("Whoops! That email doesn't look right.");
+      setErrorMessage("Please enter a valid email address.");
       setStatus("error"); return;
     }
     if (!message.trim()) {
-      setErrorMessage("Don't forget to write a message!");
+      setErrorMessage("Please write a message.");
       setStatus("error"); return;
     }
 
@@ -64,98 +64,104 @@ export default function ContactModal({ isOpen, onClose }) {
         setStatus("error");
       }
     } catch (error) {
-      setErrorMessage("Something went wrong! Please try again later.");
+      setErrorMessage("Something went wrong! Please try again.");
       setStatus("error");
     }
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 text-[var(--text-main)]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
       <div 
-        className="absolute inset-0 bg-[var(--border-color)]/50 backdrop-blur-sm" 
+        className="absolute inset-0 bg-black/60 backdrop-blur-sm" 
         onClick={() => status !== "loading" && onClose()}
       ></div>
 
       {/* Modal */}
-      <div className="relative playful-card w-full max-w-lg bg-[var(--bg-secondary)] overflow-hidden animate-in zoom-in-95 duration-200">
+      <div className="relative w-full max-w-md overflow-hidden rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] shadow-2xl">
         
-        {/* Header Block */}
-        <div className="bg-[var(--color-magenta)] text-white p-6 border-b-3 border-[var(--border-color)] flex items-center justify-between">
-          <h3 className="text-2xl font-[var(--font-heading)] font-bold">Say Hi! 👋</h3>
+        {/* Header */}
+        <div className="px-6 py-5 flex items-center justify-between border-b border-[var(--border-color)]">
+          <div>
+            <h3 className="text-base font-semibold text-[var(--text-main)] tracking-tight">Contact</h3>
+            <p className="text-xs text-[var(--text-dim)] mt-0.5">Get in touch directly</p>
+          </div>
           <button
             onClick={onClose}
             disabled={status === "loading"}
-            className="w-8 h-8 flex items-center justify-center bg-white border-2 border-[var(--border-color)] rounded-full text-[#2b2d42] shadow-[2px_2px_0px_var(--shadow-color)] hover:scale-110 transition-transform"
+            className="w-8 h-8 flex items-center justify-center bg-transparent border border-[var(--border-color)] rounded-lg text-[var(--text-muted)] hover:border-[var(--border-hover)] hover:text-[var(--text-main)] transition-all cursor-pointer"
           >
-            <X size={16} strokeWidth={3} />
+            <X size={14} />
           </button>
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="p-6 md:p-8 space-y-5">
+        <form onSubmit={handleSubmit} className="p-6 space-y-4">
           <div>
-            <label className="block font-[var(--font-heading)] font-bold text-lg mb-2">Your Name</label>
+            <label className="block text-xs font-semibold text-[var(--text-muted)] mb-1.5 uppercase tracking-wider">Name</label>
             <input
               type="text"
               name="name"
               value={formData.name}
               onChange={handleChange}
               disabled={status === "loading"}
-              className="w-full px-4 py-3 bg-[var(--bg-primary)] border-3 border-[var(--border-color)] rounded-xl shadow-[inset_2px_2px_0px_rgba(0,0,0,0.1)] focus:outline-none focus:border-[var(--color-cyan)] focus:ring-0 font-bold"
+              placeholder="Your name"
+              className="w-full px-3 py-2 bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-lg text-sm text-[var(--text-main)] placeholder-[var(--text-dim)] focus:outline-none focus:border-[var(--border-hover)] transition-colors"
             />
           </div>
 
           <div>
-            <label className="block font-[var(--font-heading)] font-bold text-lg mb-2">Your Email</label>
+            <label className="block text-xs font-semibold text-[var(--text-muted)] mb-1.5 uppercase tracking-wider">Email</label>
             <input
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
               disabled={status === "loading"}
-              className="w-full px-4 py-3 bg-[var(--bg-primary)] border-3 border-[var(--border-color)] rounded-xl shadow-[inset_2px_2px_0px_rgba(0,0,0,0.1)] focus:outline-none focus:border-[var(--color-cyan)] focus:ring-0 font-bold"
+              placeholder="you@example.com"
+              className="w-full px-3 py-2 bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-lg text-sm text-[var(--text-main)] placeholder-[var(--text-dim)] focus:outline-none focus:border-[var(--border-hover)] transition-colors"
             />
           </div>
 
           <div>
-            <label className="block font-[var(--font-heading)] font-bold text-lg mb-2">Message</label>
+            <label className="block text-xs font-semibold text-[var(--text-muted)] mb-1.5 uppercase tracking-wider">Message</label>
             <textarea
               name="message"
               value={formData.message}
               onChange={handleChange}
               disabled={status === "loading"}
               rows={4}
-              className="w-full px-4 py-3 bg-[var(--bg-primary)] border-3 border-[var(--border-color)] rounded-xl shadow-[inset_2px_2px_0px_rgba(0,0,0,0.1)] focus:outline-none focus:border-[var(--color-cyan)] focus:ring-0 font-bold resize-none"
+              placeholder="Tell me about your project..."
+              className="w-full px-3 py-2 bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-lg text-sm text-[var(--text-main)] placeholder-[var(--text-dim)] focus:outline-none focus:border-[var(--border-hover)] transition-colors resize-none"
             />
           </div>
 
           {status === "error" && (
-            <div className="bg-red-100 border-2 border-red-500 text-red-700 px-4 py-3 rounded-xl font-bold text-sm shadow-[2px_2px_0px_rgba(239,68,68,1)]">
+            <div className="bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-2.5 rounded-lg text-xs">
               {errorMessage}
             </div>
           )}
           {status === "success" && (
-            <div className="bg-[var(--color-green)] border-2 border-[var(--border-color)] text-white px-4 py-3 rounded-xl font-bold text-sm shadow-[2px_2px_0px_var(--shadow-color)]">
-              Woohoo! Message sent successfully. 🎉
+            <div className="bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-4 py-2.5 rounded-lg text-xs">
+              Message sent successfully! 🎉
             </div>
           )}
 
-          <div className="flex gap-4 pt-2">
+          <div className="flex gap-3 pt-2">
             <button
               type="button"
               onClick={onClose}
               disabled={status === "loading"}
-              className="playful-btn flex-1 bg-[var(--bg-primary)]"
+              className="btn-secondary text-xs py-2 px-4 flex-1 cursor-pointer"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={status === "loading" || status === "success"}
-              className="playful-btn flex-1 bg-[var(--color-cyan)]"
+              className="btn-primary text-xs py-2 px-4 flex-1 cursor-pointer"
             >
-              {status === "loading" ? <Loader2 className="animate-spin" /> : "Send It!"}
+              {status === "loading" ? <Loader2 className="w-4 h-4 animate-spin" /> : <><Send size={12} /> Send</>}
             </button>
           </div>
         </form>

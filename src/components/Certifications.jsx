@@ -1,25 +1,33 @@
 import React from "react";
 import { portfolioData } from "../data/portfolioData";
+import { Award } from "lucide-react";
 
 export default function Certifications() {
   return (
-    <section id="certifications" className="py-20 px-6 max-w-5xl mx-auto">
-      <div className="text-center mb-12">
-        <h2 className="text-4xl font-[var(--font-heading)] font-bold mb-4 text-[var(--color-magenta)]" style={{ textShadow: '3px 3px 0px var(--shadow-color)' }}>
-          Shiny Badges 🏆
+    <section id="certifications" className="py-24 px-6 max-w-5xl mx-auto w-full">
+      <div className="mb-16">
+        <span className="section-label mb-3 block">Achievements</span>
+        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-[var(--text-main)] mb-4">
+          Certifications
         </h2>
+        <p className="text-sm text-[var(--text-muted)] max-w-lg leading-relaxed">
+          Professional credentials, course certifications, and industry acknowledgments.
+        </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 w-full">
         {portfolioData.certifications.map((cert, idx) => (
-          <div key={idx} className="playful-card p-5 bg-[var(--bg-secondary)] text-[var(--text-main)] text-center flex flex-col items-center justify-center transform hover:-translate-y-2 hover:rotate-2">
-            <div className="w-12 h-12 mb-4 bg-white border-3 border-[var(--border-color)] rounded-full shadow-[4px_4px_0px_var(--shadow-color)] flex items-center justify-center text-xl">
-              ⭐
+          <div key={idx} className="odyssey-card p-6 flex flex-col items-start group">
+            {/* Minimal icon box */}
+            <div className="w-8 h-8 mb-4 border border-[var(--border-color)] bg-[var(--bg-secondary)] rounded-lg flex items-center justify-center text-[var(--text-muted)] group-hover:text-[var(--text-main)] group-hover:border-[var(--border-hover)] transition-all duration-300">
+              <Award size={16} />
             </div>
-            <h3 className="text-lg font-[var(--font-heading)] font-bold mb-2 leading-tight">
+            
+            <h3 className="text-sm font-semibold text-[var(--text-main)] mb-1 leading-snug">
               {cert.name}
             </h3>
-            <p className="text-sm font-semibold opacity-90">
+            
+            <p className="text-xs text-[var(--text-dim)] group-hover:text-[var(--text-muted)] transition-colors duration-300">
               {cert.issuer}
             </p>
           </div>

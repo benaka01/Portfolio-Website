@@ -1,46 +1,54 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&display=swap');
 
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-heading: 'Fredoka', system-ui, sans-serif;
-  --font-body: 'Nunito', system-ui, sans-serif;
+  --font-heading: 'Geist', system-ui, sans-serif;
+  --font-body: 'Geist', system-ui, sans-serif;
 }
 
 :root {
-  /* Playful Light Mode Palette */
-  --bg-primary: #fffaf0;     /* Creamy off-white */
-  --bg-secondary: #ffffff;   /* Pure white cards */
-  --text-main: #2b2d42;      /* Deep navy/gray */
-  --text-muted: #6c757d;     
-  --border-color: #2b2d42;   /* Thick dark borders */
-  
-  --color-magenta: #ff477e;
-  --color-cyan: #00f5d4;
-  --color-yellow: #fee440;
-  --color-purple: #9d4edd;
-  --color-green: #38b000;
-  
-  --shadow-color: #2b2d42;
+  /* LIGHT MODE (Default) */
+  color-scheme: light;
+  --bg-primary: #ffffff;
+  --bg-secondary: #fbfbfb;
+  --bg-card: #fcfcfc;
+  --bg-card-hover: #f5f5f5;
+  --text-main: #000000;
+  --text-muted: #666666;
+  --text-dim: #999999;
+  --border-color: #e5e5e5;
+  --border-hover: #a3a3a3;
+
+  --color-accent: #000000;
+  --shadow-color: rgba(0, 0, 0, 0.05);
+  --glow-white: rgba(0, 0, 0, 0.02);
+  --glow-color: rgba(0, 0, 0, 0.02);
+  --dot-color: #e5e5e5;
+  --scroll-thumb: #ccc;
 }
 
 .dark {
-  /* Playful Dark Mode Palette */
-  --bg-primary: #10002b;     /* Deep violet */
-  --bg-secondary: #240046;   /* Lighter violet cards */
-  --text-main: #e0aaff;      /* Soft lilac text */
-  --text-muted: #c77dff;     
-  --border-color: #5a189a;   /* Bright purple borders */
-  
-  --color-magenta: #ff477e;
-  --color-cyan: #00f5d4;
-  --color-yellow: #fee440;
-  --color-purple: #e0aaff;
-  --color-green: #38b000;
-  
-  --shadow-color: #3c096c;
+  /* DARK MODE — Odyssey style */
+  color-scheme: dark;
+  --bg-primary: #090909;
+  --bg-secondary: #111111;
+  --bg-card: #131313;
+  --bg-card-hover: #161616;
+  --text-main: #ffffff;
+  --text-muted: #888888;
+  --text-dim: #555555;
+  --border-color: #222222;
+  --border-hover: #444444;
+
+  --color-accent: #ffffff;
+  --shadow-color: rgba(0, 0, 0, 0.8);
+  --glow-white: rgba(255, 255, 255, 0.04);
+  --glow-color: rgba(255, 255, 255, 0.03);
+  --dot-color: #222222;
+  --scroll-thumb: #333;
 }
 
 html {
@@ -52,99 +60,173 @@ body {
   font-family: var(--font-body);
   background-color: var(--bg-primary);
   color: var(--text-main);
-  transition: background-color 0.4s ease, color 0.4s ease;
   overflow-x: hidden;
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.04em;
 }
 
-/* Playful Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
-}
-::-webkit-scrollbar-track {
-  background: var(--bg-primary);
-  border-left: 2px solid var(--border-color);
-}
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-magenta);
-  border: 2px solid var(--border-color);
-  border-radius: 20px;
+  background: var(--scroll-thumb);
+  border-radius: 6px;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-purple);
+::-webkit-scrollbar-thumb:hover { background: var(--border-hover); }
+
+/* Grid dot pattern — subtle like Odyssey */
+.grid-bg {
+  background-image: radial-gradient(circle, var(--dot-color) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
-/* 
-  Playful "Neo-Brutalist" Card 
-  Thick borders, crisp offset shadow, rounded corners
-*/
-.playful-card {
-  background-color: var(--bg-secondary);
-  border: 3px solid var(--border-color);
-  border-radius: 24px;
-  box-shadow: 6px 6px 0px var(--shadow-color);
-  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+/* ===== CLEAN CARD ===== */
+.odyssey-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  transition: all 0.3s ease;
 }
 
-.playful-card:hover {
-  transform: translate(-4px, -4px);
-  box-shadow: 10px 10px 0px var(--shadow-color);
+.odyssey-card:hover {
+  border-color: var(--border-hover);
+  background-color: var(--bg-card-hover);
 }
 
-/* Playful Button */
-.playful-btn {
+/* ===== BUTTONS ===== */
+.btn-primary {
   font-family: var(--font-heading);
-  background-color: var(--color-yellow);
-  color: #2b2d42; /* Always dark text on yellow */
-  border: 3px solid var(--border-color);
-  border-radius: 9999px; /* Pill shape */
-  padding: 10px 24px;
-  font-size: 1.125rem;
-  font-weight: 600;
-  box-shadow: 4px 4px 0px var(--shadow-color);
-  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  background-color: var(--color-accent);
+  color: var(--bg-primary);
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  transition: all 0.2s ease;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
+  border: none;
 }
 
-.playful-btn:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0px var(--shadow-color);
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
-.playful-btn:active {
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0px var(--shadow-color);
+.btn-primary:active { transform: translateY(0); }
+
+.btn-secondary {
+  font-family: var(--font-heading);
+  background-color: transparent;
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 
-/* Floating Animation for Blobs */
+.btn-secondary:hover {
+  border-color: var(--border-hover);
+  background-color: var(--glow-white);
+  transform: translateY(-1px);
+}
+
+.btn-secondary:active { transform: translateY(0); }
+
+/* Section label */
+.section-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+/* Thin divider line */
+.divider {
+  height: 1px;
+  background-color: var(--border-color);
+  width: 100%;
+}
+
+/* ===== ANIMATIONS ===== */
 @keyframes float {
-  0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
-  33% { transform: translateY(-20px) rotate(5deg) scale(1.05); }
-  66% { transform: translateY(10px) rotate(-5deg) scale(0.95); }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
 }
 
-.animate-float-blob {
-  animation: float 12s ease-in-out infinite;
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.animate-float-blob-reverse {
-  animation: float 15s ease-in-out infinite reverse;
+.animate-fade-up {
+  animation: fadeUp 0.6s ease forwards;
 }
 
-/* Background blob utilities */
-.blob-shape-1 {
-  border-radius: 43% 57% 71% 29% / 39% 49% 51% 61%;
+.animate-float { animation: float 8s ease-in-out infinite; }
+.animate-float-slow { animation: float 12s ease-in-out infinite reverse; }
+
+/* Tag pill */
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 100px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+  transition: border-color 0.2s ease;
 }
-.blob-shape-2 {
-  border-radius: 64% 36% 27% 73% / 55% 58% 42% 45%;
+
+.tag-pill:hover { border-color: var(--border-hover); }
+
+/* Skill badge */
+.skill-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--font-body);
+  letter-spacing: -0.01em;
+}
+
+.skill-badge:hover {
+  border-color: var(--border-hover);
+  color: var(--text-main);
+  background: var(--bg-card-hover);
+}
+
+.skill-badge.active {
+  background: var(--color-accent);
+  color: var(--bg-primary);
+  border-color: var(--color-accent);
 }

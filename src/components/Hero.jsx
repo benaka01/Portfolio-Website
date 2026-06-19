@@ -1,65 +1,98 @@
 import React from "react";
-import { Download, Mail } from "lucide-react";
+import { Download, ArrowUpRight } from "lucide-react";
 import profilePhoto from "../assets/Photo.jpeg";
-import { portfolioData } from "../data/portfolioData";
 
 export default function Hero({ openContactModal }) {
-  const { personalInfo } = portfolioData;
-
   return (
-    <section className="min-h-screen flex items-center justify-center pt-24 pb-12 px-6">
-      <div className="max-w-5xl w-full flex flex-col md:flex-row items-center gap-12 md:gap-20">
-        
-        {/* Text Content */}
-        <div className="flex-1 text-center md:text-left z-10">
-          <div className="inline-block px-4 py-2 bg-[var(--color-yellow)] text-[#2b2d42] font-[var(--font-heading)] font-bold rounded-full border-2 border-[var(--border-color)] shadow-[4px_4px_0px_var(--shadow-color)] mb-6 transform -rotate-2 hover:rotate-2 transition-transform cursor-default">
-            ✨ Java Full Stack Developer
-          </div>
-          
-          <h1 className="text-5xl md:text-7xl font-[var(--font-heading)] font-bold mb-6 text-[var(--color-magenta)] leading-[1.1]" style={{ textShadow: '4px 4px 0px var(--shadow-color)' }}>
-            Hi, I'm <br/><span className="text-[var(--color-cyan)]">{personalInfo.name}</span>!
-          </h1>
-          
-          <p className="text-lg md:text-xl font-semibold mb-8 max-w-xl mx-auto md:mx-0 leading-relaxed">
-            I build playful, scalable, and responsive web applications. 
-            Currently mixing Java backends with colorful React frontends!
-          </p>
-          
-          <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">
-            <button onClick={openContactModal} className="playful-btn bg-[var(--color-magenta)] text-white">
-              <Mail size={20} />
-              Let's Chat!
-            </button>
-            <a
-              href="/Benaka_Final_JFSD.pdf"
-              download="Benaka_B_Resume.pdf"
-              className="playful-btn bg-[var(--bg-secondary)] !text-[var(--text-main)]"
-            >
-              Resume <Download size={20} />
-            </a>
-          </div>
+    <section className="relative min-h-screen flex flex-col items-center justify-center pt-14 pb-24 px-6 overflow-hidden">
+
+      {/* Radial glow behind content */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-[var(--glow-color)] blur-[140px] rounded-full pointer-events-none"></div>
+
+      <div className="max-w-5xl w-full mx-auto">
+
+        {/* Top label row */}
+        <div className="flex items-center gap-3 mb-12">
+          <span className="flex h-2 w-2 relative">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+          </span>
+          <span className="section-label">Available for Opportunities</span>
         </div>
 
-        {/* Playful Image Area */}
-        <div className="relative z-10 w-64 h-64 md:w-80 md:h-80 shrink-0">
-          {/* Background Blob decoration behind image */}
-          <div className="absolute inset-0 bg-[var(--color-cyan)] blob-shape-2 border-4 border-[var(--border-color)] shadow-[8px_8px_0px_var(--shadow-color)] animate-float-blob"></div>
-          
-          {/* Image Container */}
-          <div className="absolute inset-2 overflow-hidden blob-shape-1 border-4 border-[var(--border-color)] bg-[var(--color-yellow)]">
-            <img
-              src={profilePhoto}
-              alt="Benaka B"
-              className="w-full h-full object-cover mix-blend-luminosity hover:mix-blend-normal transition-all duration-500 scale-110 hover:scale-100"
-            />
-          </div>
-          
-          {/* Floating badge */}
-          <div className="absolute -bottom-4 -right-4 bg-[var(--color-purple)] text-white dark:text-[#2b2d42] font-[var(--font-heading)] font-bold px-4 py-2 rounded-2xl border-2 border-[var(--border-color)] shadow-[4px_4px_0px_var(--shadow-color)] animate-bounce" style={{ animationDuration: '2s' }}>
-            Available for work!
-          </div>
-        </div>
+        {/* Main hero grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-12 items-center">
 
+          {/* Text block */}
+          <div>
+            <h1 className="text-[clamp(2.8rem,7vw,5.5rem)] font-semibold leading-[1.0] tracking-[-0.05em] text-[var(--text-main)] mb-6">
+              Benaka B
+            </h1>
+
+            <p className="text-[var(--text-muted)] text-base md:text-lg font-normal leading-relaxed max-w-lg mb-2" style={{ letterSpacing: "-0.01em" }}>
+              Java Full Stack Developer building scalable backends, reactive UIs, and clean software architecture.
+            </p>
+
+            <p className="text-[var(--text-dim)] text-sm leading-relaxed max-w-md mb-10" style={{ letterSpacing: "-0.01em" }}>
+              Specialized in Java · Spring Boot · React · MySQL · MongoDB. Open to roles in product engineering and full-stack development.
+            </p>
+
+            {/* CTAs */}
+            <div className="flex flex-wrap gap-3">
+              <button
+                onClick={openContactModal}
+                className="btn-primary text-sm cursor-pointer"
+              >
+                Get in touch
+                <ArrowUpRight size={14} />
+              </button>
+
+              <a
+                href="/Benaka_Final_JFSD.pdf"
+                download="Benaka_B_Resume.pdf"
+                className="btn-secondary text-sm cursor-pointer"
+              >
+                <Download size={14} />
+                Resume
+              </a>
+            </div>
+
+            {/* Stats row */}
+            <div className="flex items-center gap-8 mt-14 pt-8 border-t border-[var(--border-color)]">
+              {[
+                { val: "4+", label: "Projects" },
+                { val: "2+", label: "Internships" },
+                { val: "100+", label: "LeetCode" },
+                { val: "800+", label: "Commits" },
+              ].map((s) => (
+                <div key={s.label}>
+                  <div className="text-xl font-semibold text-[var(--text-main)] tracking-tight" style={{ letterSpacing: "-0.04em" }}>{s.val}</div>
+                  <div className="text-xs text-[var(--text-dim)] mt-0.5">{s.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Profile photo */}
+          <div className="lg:flex hidden flex-col items-center gap-5">
+            <div className="relative w-52 h-52">
+              {/* Border ring */}
+              <div className="absolute inset-0 rounded-2xl border border-[var(--border-color)]"></div>
+              <img
+                src={profilePhoto}
+                alt="Benaka B"
+                className="w-full h-full object-cover rounded-2xl grayscale hover:grayscale-0 transition-all duration-700"
+              />
+            </div>
+
+            {/* Location tag */}
+            <div className="flex items-center gap-2 text-xs text-[var(--text-dim)]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--border-hover)] inline-block"></span>
+              Mandya, Karnataka, India
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
   );

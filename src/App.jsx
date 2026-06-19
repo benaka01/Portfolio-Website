@@ -13,29 +13,37 @@ function App() {
   const [isContactOpen, setIsContactOpen] = useState(false);
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[var(--bg-primary)] text-[var(--text-main)] transition-colors duration-300">
-      {/* Animated SVG Background Blobs */}
-      <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-[var(--color-cyan)] opacity-20 blob-shape-1 animate-float-blob blur-3xl mix-blend-multiply dark:mix-blend-screen"></div>
-        <div className="absolute top-[30%] right-[-10%] w-[600px] h-[600px] bg-[var(--color-magenta)] opacity-20 blob-shape-2 animate-float-blob-reverse blur-3xl mix-blend-multiply dark:mix-blend-screen"></div>
-        <div className="absolute bottom-[-10%] left-[20%] w-[700px] h-[700px] bg-[var(--color-yellow)] opacity-20 blob-shape-1 animate-float-blob blur-3xl mix-blend-multiply dark:mix-blend-screen" style={{ animationDuration: '18s' }}></div>
-      </div>
+    <div className="relative min-h-screen bg-[var(--bg-primary)] text-[var(--text-main)] overflow-x-hidden transition-colors duration-300">
+      {/* Subtle dot grid background */}
+      <div className="fixed inset-0 grid-bg opacity-100 pointer-events-none z-0"></div>
+
+      {/* Top glow */}
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-[var(--glow-color)] blur-[120px] rounded-full pointer-events-none z-0"></div>
 
       <div className="relative z-10 flex flex-col min-h-screen">
         <Navbar openContactModal={() => setIsContactOpen(true)} />
-        
-        {/* Flowing centered layout */}
+
         <main className="flex-grow w-full">
           <Hero openContactModal={() => setIsContactOpen(true)} />
+
+          <div className="divider max-w-5xl mx-auto opacity-50"></div>
           <Projects />
+
+          <div className="divider max-w-5xl mx-auto opacity-50"></div>
           <Skills />
+
+          <div className="divider max-w-5xl mx-auto opacity-50"></div>
           <Experience />
+
+          <div className="divider max-w-5xl mx-auto opacity-50"></div>
           <Education />
+
+          <div className="divider max-w-5xl mx-auto opacity-50"></div>
           <Certifications />
         </main>
-        
+
         <Footer />
-        
+
         <ContactModal
           isOpen={isContactOpen}
           onClose={() => setIsContactOpen(false)}

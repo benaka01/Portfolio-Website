@@ -20,86 +20,91 @@ export default function Navbar({ openContactModal }) {
   ];
 
   return (
-    <nav className="fixed top-6 left-0 w-full z-50 flex justify-center px-4 pointer-events-none">
-      <div className={`pointer-events-auto flex items-center justify-between px-6 py-3 rounded-full transition-all duration-300 ${
-        scrolled ? "bg-[var(--bg-secondary)] border-[3px] border-[var(--border-color)] shadow-[4px_4px_0px_var(--shadow-color)]" : "bg-transparent"
-      } w-full max-w-4xl`}>
-        
-        {/* Logo */}
-        <a href="#" className="font-[var(--font-heading)] font-bold text-2xl tracking-wide text-[var(--color-magenta)]" style={{ textShadow: '2px 2px 0px var(--border-color)' }}>
-          Benaka B
-        </a>
+    <nav className="fixed top-0 left-0 w-full z-50">
+      <div className={`transition-all duration-300 ${scrolled ? "border-b border-[var(--border-color)] bg-[var(--bg-primary)]/90 backdrop-blur-md" : "bg-transparent"}`}>
+        <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
-          <ul className="flex items-center gap-6 font-[var(--font-heading)] font-medium text-[1.1rem]">
-            {navLinks.map((link) => (
-              <li key={link.name}>
-                <a href={link.href} className="hover:text-[var(--color-cyan)] transition-colors hover:underline decoration-4 underline-offset-4 decoration-[var(--color-yellow)]">
-                  {link.name}
-                </a>
-              </li>
-            ))}
-          </ul>
+          {/* Logo */}
+          <a href="#" className="font-semibold text-sm tracking-tight text-[var(--text-main)] hover:opacity-80 transition-colors" style={{ letterSpacing: "-0.02em" }}>
+            Benaka B
+          </a>
 
-          <div className="flex items-center gap-4">
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center gap-6">
+            <ul className="flex items-center gap-6">
+              {navLinks.map((link) => (
+                <li key={link.name}>
+                  <a
+                    href={link.href}
+                    className="text-sm text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors duration-200"
+                    style={{ letterSpacing: "-0.01em" }}
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            {/* Theme Toggle Button */}
             <button
               onClick={toggleTheme}
-              className="p-2 bg-[var(--bg-primary)] border-2 border-[var(--border-color)] rounded-full hover:bg-[var(--color-yellow)] hover:scale-110 transition-all shadow-[2px_2px_0px_var(--shadow-color)]"
+              className="p-2 border border-[var(--border-color)] hover:border-[var(--border-hover)] rounded-lg text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors cursor-pointer"
+              aria-label="Toggle Theme"
             >
-              {isDark ? <Sun size={20} className="text-[#2b2d42]" /> : <Moon size={20} className="text-[#2b2d42]" />}
+              {isDark ? <Sun size={14} /> : <Moon size={14} />}
             </button>
-            
+
             <button
               onClick={openContactModal}
-              className="playful-btn text-sm px-5 py-2 bg-[var(--color-cyan)] text-[#2b2d42]"
+              className="btn-primary text-xs px-4 py-2 cursor-pointer"
             >
-              Say Hi! 👋
+              Contact
             </button>
           </div>
-        </div>
 
-        {/* Mobile Toggle */}
-        <div className="flex items-center gap-3 md:hidden">
-          <button
-            onClick={toggleTheme}
-            className="p-2 bg-[var(--bg-primary)] border-2 border-[var(--border-color)] rounded-full shadow-[2px_2px_0px_var(--shadow-color)]"
-          >
-             {isDark ? <Sun size={20} className="text-[#2b2d42]" /> : <Moon size={20} className="text-[#2b2d42]" />}
-          </button>
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="p-2 bg-[var(--color-yellow)] border-2 border-[var(--border-color)] rounded-xl shadow-[2px_2px_0px_var(--shadow-color)] text-[#2b2d42]"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile Right Controls */}
+          <div className="flex md:hidden items-center gap-3">
+            {/* Theme Toggle Button Mobile */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 border border-[var(--border-color)] hover:border-[var(--border-hover)] rounded-lg text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors cursor-pointer"
+              aria-label="Toggle Theme"
+            >
+              {isDark ? <Sun size={14} /> : <Moon size={14} />}
+            </button>
+
+            {/* Mobile menu toggle */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors cursor-pointer"
+            >
+              {isOpen ? <X size={18} /> : <Menu size={18} />}
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Mobile Drawer */}
       {isOpen && (
-        <div className="absolute top-20 left-4 right-4 bg-[var(--bg-secondary)] border-[3px] border-[var(--border-color)] rounded-3xl p-6 shadow-[8px_8px_0px_var(--shadow-color)] pointer-events-auto md:hidden">
-          <ul className="flex flex-col gap-4 font-[var(--font-heading)] text-xl text-center">
+        <div className="md:hidden border-b border-[var(--border-color)] bg-[var(--bg-primary)]/95 backdrop-blur-md">
+          <div className="max-w-5xl mx-auto px-6 py-4 flex flex-col gap-1">
             {navLinks.map((link) => (
-              <li key={link.name}>
-                <a
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className="block p-3 rounded-xl hover:bg-[var(--color-magenta)] hover:text-white transition-colors border-2 border-transparent hover:border-[var(--border-color)]"
-                >
-                  {link.name}
-                </a>
-              </li>
-            ))}
-            <li>
-              <button
-                onClick={() => { setIsOpen(false); openContactModal(); }}
-                className="w-full playful-btn bg-[var(--color-cyan)] mt-4"
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className="text-sm text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors py-2.5 border-b border-[var(--border-color)] last:border-0"
               >
-                Say Hi! 👋
-              </button>
-            </li>
-          </ul>
+                {link.name}
+              </a>
+            ))}
+            <button
+              onClick={() => { setIsOpen(false); openContactModal(); }}
+              className="btn-primary text-xs py-2.5 mt-3 w-full cursor-pointer"
+            >
+              Contact
+            </button>
+          </div>
         </div>
       )}
     </nav>
